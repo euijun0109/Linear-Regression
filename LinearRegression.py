@@ -1,9 +1,9 @@
 import matplotlib.pyplot as plt
 class LinearRegression:
-    def __init__(self, m, alpha):
+    def __init__(self, alpha):
         self.theta1 = 0
         self.theta2 = 0
-        self.m = m
+        self.m = 0
         self.cost1 = 0
         self.cost2 = 0
         self.alpha = alpha
@@ -37,6 +37,7 @@ class LinearRegression:
         print("theta 1: ", self.theta1, "theta 2: ", self.theta2, '\n')
 
     def run(self, i, train):
+        self.m = len(train)
         for _ in range(i):
             self.calculate(train)
         self.display(train)
