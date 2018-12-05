@@ -7,6 +7,7 @@ class LinearRegression:
         self.cost1 = 0
         self.cost2 = 0
         self.alpha = alpha
+        self.mseSum = 0
 
     def hypothesis(self, x):
         return self.theta1 + self.theta2 * x
@@ -15,6 +16,8 @@ class LinearRegression:
         for x, y in pair:
             self.cost1 += self.hypothesis(x) - y
             self.cost2 += (self.hypothesis(x) - y) * x
+            #calculates mse also
+            self.mseSum += (y - self.hypothesis(x)) ** 2
 
     def GD(self):
         newTheta1 = self.theta1 - self.alpha * (1/self.m) * (self.cost1)
@@ -26,7 +29,9 @@ class LinearRegression:
         for pair in train:
             self.batch(pair)
         self.GD()
-        print("costs:", self.cost1, ", ", self.cost2, '\n')
+        print("costs:", self.cost1, ", ", self.cost2)
+        print("mse: ", self.mseSum / self.m)
+        self.mseSum = 0
         self.cost1 = 0
         self.cost2 = 0
         print("theta 1: ", self.theta1, "theta 2: ", self.theta2, '\n')
