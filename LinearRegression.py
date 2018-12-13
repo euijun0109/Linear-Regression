@@ -1,4 +1,6 @@
 import matplotlib.pyplot as plt
+
+
 class LinearRegression:
     def __init__(self, alpha):
         self.theta1 = 0
@@ -12,7 +14,7 @@ class LinearRegression:
     def hypothesis(self, x):
         return self.theta1 + self.theta2 * x
 
-    def batch(self, pair):
+    def costs(self, pair):
         for x, y in pair:
             self.cost1 += self.hypothesis(x) - y
             self.cost2 += (self.hypothesis(x) - y) * x
@@ -27,7 +29,7 @@ class LinearRegression:
 
     def calculate(self, *train):
         for pair in train:
-            self.batch(pair)
+            self.costs(pair)
         self.GD()
         print("costs:", self.cost1, ", ", self.cost2)
         print("mse: ", self.mseSum / self.m)
