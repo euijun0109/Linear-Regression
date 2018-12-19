@@ -44,6 +44,9 @@ class LinearRegression:
             self.calculate(train)
         self.display(train)
 
+    def predict(self, x):
+        return self.theta1 + self.theta2 * x
+
     def display(self, data):
         x = []
         y = []
